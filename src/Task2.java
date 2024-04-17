@@ -1,21 +1,45 @@
+import java.util.Scanner;
+
 public class Task2 {
-//    #include <vector>
-//#include <iostream>
-//
-//    int main() {
-//        int64_t h, w;
-//        std::cin >> h >> w;
-//        std::vector<std::vector<int64_t>> matrix(h, std::vector<int64_t>(w));
-//        for (size_t i = 0; i < h; ++i) {
-//            for (size_t j = 0; j < w; ++j) {
-//                std::cin >> matrix[i][j];
-//            }
-//        }
-//        for (int64_t i = 0; i < w; ++i) {
-//            for (int64_t j = h - 1; j >= 0; --j) {
-//                std::cout << matrix[j][i] << ' ';
-//            }
-//            std::cout << std::endl;
-//        }
-//    }
+    public static Long[][] rotate(Long[][] originalMatrix) {
+        int rows = originalMatrix.length;
+        int cols = originalMatrix[0].length;
+
+        Long[][] rotatedMatrix = new Long[cols][rows];
+
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                rotatedMatrix[j][rows - 1 - i] = originalMatrix[i][j];
+            }
+        }
+
+        return rotatedMatrix;
+    }
+
+    public static void solve() {
+        Scanner scan = new Scanner(System.in);
+        int numRows = scan.nextInt();
+        int numCols = scan.nextInt();
+
+        Long[][] originalMatrix = new Long[numRows][numCols];
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                originalMatrix[i][j] = scan.nextLong();
+            }
+        }
+
+        Long[][] rotatedMatrix = rotate(originalMatrix);
+
+        for (int j = 0; j < numCols; j++) {
+            for (int i = 0; i < numRows; i++) {
+                System.out.print(rotatedMatrix[j][i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        solve();
+    }
 }
